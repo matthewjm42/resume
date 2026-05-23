@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matthew Murray — Biomedical Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── PALETTE ── */
+    :root {
+      --bg:        #1a1108;
+      --surface:   #241a0c;
+      --card:      #2e2010;
+      --accent:    #c4622d;
+      --accent-lo: #8a3d18;
+      --cream:     #e8dcc8;
+      --muted:     #a89070;
+      --faint:     #5a4430;
+      --radius:    10px;
+    }
+
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Subtle noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 28px;
+      padding: 28px 0 0;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    header {
+      padding: 72px 0 60px;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    /* ── SECTION TITLES ── */
+    section {
+      padding: 56px 0 0;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--faint);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: var(--cream);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .about-text strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    /* ── CARDS (projects, experience) ── */
+    .card-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-lo);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--cream);
+    }
+
+    .card-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--accent-lo);
+      border-radius: 4px;
+      padding: 3px 9px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .skill-group h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .skill-group ul {
+      list-style: none;
+    }
+
+    .skill-group li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 3px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .skill-group li:last-child { border-bottom: none; }
+
+    /* ── EDUCATION ── */
+    .edu-block {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .edu-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .edu-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .edu-block p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border: 1px solid var(--faint);
+      border-radius: 6px;
+      padding: 8px 16px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+      border-color: var(--accent-lo);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--faint);
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    section, header {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.05s; }
+    section:nth-child(3) { animation-delay: 0.10s; }
+    section:nth-child(4) { animation-delay: 0.15s; }
+    section:nth-child(5) { animation-delay: 0.20s; }
+    section:nth-child(6) { animation-delay: 0.25s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <p class="eyebrow">Biomedical Engineering · First Year</p>
+    <h1>Your <em>Name</em><br>Goes Here</h1>
+    <p class="tagline">
+      A curious first-year student at the intersection of engineering and medicine.
+      Building things. Learning fast. Interested in how the body works and how technology can help it.
+    </p>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About Me</p>
+    <p class="about-text">
+      Hi — I'm a first-year <strong>Biomedical Engineering</strong> student passionate about 
+      using engineering principles to solve real medical challenges. I'm drawn to areas like 
+      <strong>medical imaging, biomechanics,</strong> and <strong>biosignal processing</strong>.
+      Outside of coursework I enjoy tinkering with hardware, reading about neuroscience, and 
+      getting outdoors whenever I can.
+    </p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-header">
+          <h3>ECG Signal Visualizer</h3>
+          <span class="card-date">Winter 2025</span>
+        </div>
+        <p>A simple Python script that reads raw ECG data, filters noise, and plots a clean 
+           waveform. Built as a self-directed project to better understand biosignal processing.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Anatomy Study App — Concept</h3>
+          <span class="card-date">Fall 2024</span>
+        </div>
+        <p>Wireframed and pitched a mobile flashcard app tailored for anatomy students, 
+           incorporating spaced repetition. Presented to a first-year design class.</p>
+        <div class="tag-row">
+          <span class="tag">Figma</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Presentation</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>This Website</h3>
+          <span class="card-date">2025</span>
+        </div>
+        <p>Hand-coded in HTML & CSS as part of learning web development from scratch. 
+           Designed to reflect a warm, understated aesthetic without using any frameworks.</p>
+        <div class="tag-row">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h4>Engineering</h4>
+        <ul>
+          <li>MATLAB (beginner)</li>
+          <li>Python (beginner)</li>
+          <li>CAD / SolidWorks</li>
+          <li>Circuit basics</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>Science</h4>
+        <ul>
+          <li>Human Anatomy</li>
+          <li>Physiology</li>
+          <li>Biochemistry</li>
+          <li>Physics</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <ul>
+          <li>HTML & CSS</li>
+          <li>Microsoft Office</li>
+          <li>Figma (learning)</li>
+          <li>GitHub</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>Soft Skills</h4>
+        <ul>
+          <li>Lab report writing</li>
+          <li>Team collaboration</li>
+          <li>Problem decomposition</li>
+          <li>Fast learning</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-block">
+      <div class="edu-dot"></div>
+      <div>
+        <h3>B.Sc. Biomedical Engineering</h3>
+        <p>University of Waterloo &nbsp;·&nbsp; 2025 - Present</p>
+        <p style="margin-top:6px;">
+          Relevant coursework: Intro to Biomedical Engineering, Calculus I & II, 
+          General Chemistry, Physics for Engineers, Human Anatomy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Your Role or Volunteer Work</h3>
+          <span class="card-date">Date – Date</span>
+        </div>
+        <p>Describe what you did here — even informal experience counts. 
+           Tutoring, volunteering, part-time work, club involvement. 
+           Replace this with something real from your life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <p class="about-text" style="margin-bottom: 20px;">
+      Always happy to connect — whether it's about a project, an opportunity, or just to talk engineering.
+    </p>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:m42murra@uwaterloo.ca">✉ m42murra@uwaterloo.ca</a>
+      <a class="contact-link" href="https://github.com/matthewjm42" target="_blank">⌥ GitHub</a>
+      <a class="contact-link" href="https://linkedin.com/in/www.linkedin.com/in/matthewmurray48" target="_blank">in LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with HTML & CSS &nbsp;·&nbsp; © 2025 Matthew Murray</p>
+  </footer>
+
+</div>
+</body>
+</html>
