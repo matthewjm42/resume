@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matthew Murray : Biomedical Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #181008;
+      --surface:   #221608;
+      --card:      #2c1e0e;
+      --card-hover:#341f0a;
+      --accent:    #c4622d;
+      --accent-lo: #7a3a18;
+      --accent-hi: #e07840;
+      --cream:     #ede0c8;
+      --muted:     #a89070;
+      --faint:     #4a3420;
+      --radius:    10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      transition: all 0.3s ease;
+    }
+
+    /* grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 28px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: 20px;
+      overflow: hidden;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .lang-btn {
+      padding: 5px 14px;
+      cursor: pointer;
+      color: var(--muted);
+      text-transform: uppercase;
+      transition: all 0.2s;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--cream);
+    }
+
+    /* ── HERO ── */
+    header {
+      padding: 68px 0 56px;
+      border-bottom: 1px solid var(--faint);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.02;
+      color: var(--cream);
+      margin-bottom: 22px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    /* Currently bar */
+    .currently {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: 6px;
+      padding: 10px 18px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .currently-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    .currently strong { color: var(--cream); font-weight: 400; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* ── SECTION LABELS ── */
+    section { padding: 56px 0 0; }
+
+    .section-label {
+      font-size: 0.66rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--faint);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 660px;
+      line-height: 1.85;
+    }
+
+    .about-text strong { color: var(--cream); font-weight: 400; }
+
+    /* ── CARDS ── */
+    .card-grid { display: grid; gap: 12px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      transition: border-color 0.25s, transform 0.2s, background 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-lo);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.18rem;
+      color: var(--cream);
+    }
+
+    .card-date {
+      font-size: 0.73rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    .card ul {
+      margin-top: 6px;
+      padding-left: 16px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--accent-lo);
+      border-radius: 4px;
+      padding: 3px 9px;
+    }
+
+    /* ── PHOTO GRID ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: var(--card);
+      border: 1px dashed var(--faint);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--faint);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 12px;
+      transition: border-color 0.2s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-slot:hover { border-color: var(--accent-lo); }
+
+    /* Once you add a real photo, replace the slot with an <img> tag */
+    .photo-slot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    .photo-icon { font-size: 1.6rem; opacity: 0.3; }
+    .photo-caption { font-size: 0.7rem; color: var(--faint); margin-top: 4px; }
+
+    /* ── ATHLETICS ── */
+    .race-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .race-card {
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .race-card:hover {
+      border-color: var(--accent-lo);
+      transform: translateY(-2px);
+    }
+
+    .race-type {
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .race-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .race-stat {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .race-stat strong {
+      color: var(--accent-hi);
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    /* upcoming badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--accent-lo);
+      color: var(--cream);
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── AWARDS ── */
+    .award-list { display: grid; gap: 10px; }
+
+    .award-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .award-item:hover { border-color: var(--accent-lo); }
+
+    .award-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .award-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .award-item p { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--faint);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .skill-group h4 {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .skill-group ul { list-style: none; }
+
+    .skill-group li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .skill-group li:last-child { border-bottom: none; }
+
+    /* ── EDUCATION ── */
+    .edu-block { display: flex; gap: 20px; align-items: flex-start; }
+
+    .edu-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .edu-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .edu-block p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.86rem;
+      border: 1px solid var(--faint);
+      border-radius: 6px;
+      padding: 9px 18px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--accent); border-color: var(--accent-lo); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      padding-top: 22px;
+      border-top: 1px solid var(--faint);
+      font-size: 0.73rem;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── ANIMATIONS ── */
+    header { animation: fadeUp 0.6s ease both; }
+    section:nth-of-type(1) { animation: fadeUp 0.6s 0.05s ease both; }
+    section:nth-of-type(2) { animation: fadeUp 0.6s 0.10s ease both; }
+    section:nth-of-type(3) { animation: fadeUp 0.6s 0.15s ease both; }
+    section:nth-of-type(4) { animation: fadeUp 0.6s 0.20s ease both; }
+    section:nth-of-type(5) { animation: fadeUp 0.6s 0.25s ease both; }
+    section:nth-of-type(6) { animation: fadeUp 0.6s 0.30s ease both; }
+    section:nth-of-type(7) { animation: fadeUp 0.6s 0.35s ease both; }
+    section:nth-of-type(8) { animation: fadeUp 0.6s 0.40s ease both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+/* ── LANGUAGE TOGGLE ── */
+    .lang-hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-links">
+      <a href="#why">Why BME</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#athletics">Athletics</a>
+      <a href="#awards">Awards</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <p class="eyebrow">
+      <span data-lang="en">Biomedical Engineering · University of Waterloo · First Year</span>
+      <span data-lang="fr">Génie biomédical · Université de Waterloo · Première année</span>
+    </p>
+    <h1>Matthew <em>Murray</em></h1>
+    <p class="tagline">
+      <span data-lang="en">Student of Engineering. Leader by nature. I translate complex ideas into clear outcomes: in the lab, on the team, and on the road.</span>
+      <span data-lang="fr">Étudiant en ingénierie. Leader par nature. Je traduis les idées complexes en résultats clairs: en laboratoire, en équipe, et sur la route.</span>
+    </p>
+
+    <!-- CURRENTLY -->
+    <div class="currently">
+      <div class="currently-dot"></div>
+      <span data-lang="en"><strong>Currently:</strong> Research assistant UCalgary - Department of Clinical Neurosciences and Radiology · Half Ironman coming up in June</span>
+      <span data-lang="fr"><strong>Actuellement:</strong> 
+Assistante de recherche, Université de Calgary - Département des neurosciences cliniques et de radiologie · Demi-Ironman en juin</span>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+   <!-- WHY BIOMEDICAL -->
+  <section id="why">
+    <p class="section-label">
+      <span data-lang="en">Why Biomedical</span>
+      <span data-lang="fr">Pourquoi le génie biomédical</span>
+    </p>
+    <p class="about-text">
+      <span data-lang="en">
+        Three things pull me toward biomedical engineering. The first is <strong>assistive and accessibility device design</strong>: building and developping things that give people back capability they've lost, as I explored hands-on at UWaterloo's Biotron-Enable lab. The second is <strong>ergonomic design for sustained load</strong>: understanding what hours of sitting, improper posture, and compressive forces actually do to the lower back, and designing seating systems, particularly in vehicles, that account for that properly. The third is the <strong>blood–brain barrier</strong>: specifically low-intensity focused ultrasound as a way to open it. The brain is arguably the hardest place in the body to deliver a drug to, and the fact that sound waves may be the key to solving that is the kind of engineering problem I find tricky to stop thinking about.
+        <br><br><strong>Engineering that meets the body where it actually is.</strong>
+      </span>
+      <span data-lang="fr">
+        Trois choses m'attirent vers le génie biomédical. La première est la <strong>conception de dispositifs d'assistance</strong> : construire et développer des outils qui redonnent des capacités aux personnes, comme je l'ai exploré concrètement au laboratoire Biotron-Enable de UWaterloo. La deuxième est la <strong>conception ergonomique pour charge soutenue</strong> : comprendre ce que des heures assises, une mauvaise posture et des forces compressives font réellement au bas du dos, et concevoir des systèmes de siège, notamment dans les véhicules, qui en tiennent compte correctement. La troisième est la <strong>barrière hémato-encéphalique</strong> : plus précisément les ultrasons focalisés de faible intensité pour l'ouvrir. Le cerveau est l'endroit le plus difficile du corps pour livrer un médicament, et le fait que les ondes sonores puissent être la clé de ce problème est exactement le genre de problème d'ingénierie auquel je n'arrête pas de penser.
+        <br><br><strong>Un génie qui rencontre le corps là où il se trouve réellement.</strong>
+      </span>
+    </p>
+  </section>
+  <section id="about">
+    <p class="section-label">
+      <span data-lang="en">About Me</span>
+      <span data-lang="fr">À propos</span>
+    </p>
+    <p class="about-text">
+      <span data-lang="en">
+        I'm a first-year <strong>Biomedical Engineering</strong> student at the University of Waterloo with a drive for turning complex problems into real solutions. I've led teams of <strong>70+ students</strong>, taught swimming and lifesaving, designed <strong>3D-printed assistive devices</strong>, and been named Valedictorian at Shad UPEI. I thrive in fast-paced, collaborative environments and care deeply about engineering that serves people.
+      </span>
+      <span data-lang="fr">
+        Étudiant en première année de <strong>génie biomédical</strong> à l'Université de Waterloo, je transforme les problèmes complexes en solutions concrètes. J'ai dirigé des équipes de <strong>plus de 70 étudiants</strong>, enseigné la natation et les premiers secours, conçu des <strong>dispositifs d'assistance imprimés en 3D</strong>, et été nommé major de promotion au Shad UPEI. Je m'épanouis dans des environnements collaboratifs et rapides, et je me soucie profondément d'un génie au service des personnes.
+      </span>
+    </p>
+  </section>
+
+ <!-- PHOTOS -->
+<section id="photos">
+  <p class="section-label">
+    <span data-lang="en">Leadership in Action</span>
+    <span data-lang="fr">Leadership en action</span>
+  </p>
+  <div class="photo-grid">
+
+    <div class="photo-slot">
+      <img src="Headbudphoto.jpg" alt="Head Buddies">
+    </div>
+
+    <div class="photo-slot">
+      <img src="Engclubphoto.jpeg" alt="Engineering Club" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="photo-slot">
+        <img src="ShadIDPhoto.jpeg" alt="ShadIDPhoto" style="width:100%;height:100%;object-fit:cover;">
+        <span>
+          <span data-lang="en">Shad UPEI / project photo</span>
+          <span data-lang="fr">Photo Shad UPEI / projet</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">
+      <span data-lang="en">Projects</span>
+      <span data-lang="fr">Projets</span>
+    </p>
+    <div class="card-grid">
+
+      <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+  <img src="actualbiotronkeyphoto.jpeg" alt="Biotron project" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
+  <img src="cadbiotronholder.jpeg" alt="Biotron project" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
+</div>
+<div class="card-header">
+          <h3>
+            <span data-lang="en">UWaterloo Biotron-Enable: Assistive Devices</span>
+            <span data-lang="fr">UWaterloo Biotron-Enable: Appareils d'assistance</span>
+          </h3>
+          <span class="card-date">Dec 2025 – Feb 2026</span>
+        </div>
+        <ul>
+          <li data-lang="en">Designed, prototyped and tested a 3D-printed key usability aid for individuals with arthritis, considering grip force, hand placement and manufacturability.</li>
+          <li data-lang="fr">Conception, prototypage et test d'un aide à l'utilisation des clés imprimée en 3D pour les personnes arthritiques.</li>
+          <li data-lang="en">Designed and printed braille keycaps for an individual with visual impairment.</li>
+          <li data-lang="fr">Conception et impression de touches braille pour une personne malvoyante.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Bambu Studio</span>
+          <span class="tag">3D Printing</span>
+          <span class="tag">Assistive Tech</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="CPboardgame.jpeg" alt="description" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Accessibility Design Project: Board Games & Cerebral Palsy</span>
+            <span data-lang="fr">Projet de conception accessible: Jeux de société & Paralysie cérébrale</span>
+          </h3>
+          <span class="card-date">Sept – Dec 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Followed the full engineering design process to improve board game accessibility for children aged 8–11 with spastic cerebral palsy.</li>
+          <li data-lang="fr">Suivi du processus de conception en ingénierie pour améliorer l'accessibilité des jeux de société pour les enfants de 8 à 11 ans atteints de paralysie cérébrale spastique.</li>
+          <li data-lang="en">Applied QFD, Pairwise, BOC, and SWOT analysis frameworks.</li>
+          <li data-lang="fr">Application des outils QFD, Pairwise, BOC et analyse SWOT.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">QFD</span>
+          <span class="tag">Pairwise</span>
+          <span class="tag">SWOT</span>
+          <span class="tag">Design Process</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Shaddoingstuff.jpeg" alt="description" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Shad UPEI: Clean Energy Design Challenge</span>
+            <span data-lang="fr">Shad UPEI: Défi conception énergie propre</span>
+          </h3>
+          <span class="card-date">July 2024</span>
+        </div>
+        <p>
+          <span data-lang="en">Month-long intensive program. Collaborated on a design solution for clean, affordable energy and energy reduction.</span>
+          <span data-lang="fr">Programme intensif d'un mois. Collaboration sur une solution de conception pour une énergie propre et abordable.</span>
+        </p>
+        <div class="tag-row">
+          <span class="tag">Team Design</span>
+          <span class="tag">Clean Energy</span>
+          <span class="tag">Valedictorian</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">
+      <span data-lang="en">Experience</span>
+      <span data-lang="fr">Expérience</span>
+    </p>
+    <div class="card-grid">
+
+<div class="card">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Research Assistant — University of Calgary</span>
+            <span data-lang="fr">Assistant de recherche — Université de Calgary</span>
+          </h3>
+          <span class="card-date">May 2026 – Present</span>
+        </div>
+        <ul>
+          <li data-lang="en">Working within the Department of Clinical Neurosciences and Radiology on precision medicine reports for patients with degenerative cervical myelopathy (DCM).</li>
+          <li data-lang="fr">Travail au sein du Département des neurosciences cliniques et de radiologie sur des rapports de médecine de précision pour les patients atteints de myélopathie cervicale dégénérative.</li>
+          <li data-lang="en">Gathering clinical and imaging data from enrolled study participants; processing advanced imaging data using standardized tools.</li>
+          <li data-lang="fr">Collecte de données cliniques et d'imagerie auprès des participants à l'étude; traitement des données d'imagerie avancées avec des outils standardisés.</li>
+          <li data-lang="en">Co-authoring a research paper on what patients want to know about their DCM diagnosis, combining quantitative and qualitative data.</li>
+          <li data-lang="fr">Co-rédaction d'un article de recherche sur ce que les patients souhaitent savoir sur leur diagnostic de myélopathie cervicale dégénérative.</li>
+          <li data-lang="en">Reviewing precision medicine reports directly with patients to evaluate understanding, clarity, and treatment expectations.</li>
+          <li data-lang="fr">Révision des rapports de médecine de précision avec les patients pour évaluer leur compréhension et leurs attentes face au traitement.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Clinical Research</span>
+          <span class="tag">Medical Imaging</span>
+          <span class="tag">Patient Interaction</span>
+          <span class="tag">Peer Review Paper</span>
+          <span class="tag">DCM</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Budleadershipphoto.jpg" alt="Head Buddies" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Head Buddies: Co-Head & Team Lead</span> <span data-lang="fr">Head Buddies: Co-responsable & chef d'équipe</span>
+          </h3>
+          <span class="card-date">Mar 2024 – Jun 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Developed the application process (written + interview) and built a team of 70+ student leaders working with 250+ grade 9 students.</li>
+          <li data-lang="fr">Développé le processus de candidature et constitution d'une équipe de 70+ leaders étudiants accompagnant 250+ élèves de 9e année.</li>
+          <li data-lang="en">Ran weekly sessions on equity, bullying, peer pressure, and study habits. Directed 12 in-class supervisors.</li>
+          <li data-lang="fr">Animation de séances hebdomadaires sur l'équité, l'intimidation, la pression des pairs et les habitudes d'étude. Direction de 12 superviseurs en classe.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <img src="Engphotoconference.jpeg" alt="Engphotoconference" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Engineering Club: President</span>
+            <span data-lang="fr">Club d'ingénierie: Président</span>
+          </h3>
+          <span class="card-date">Sept 2023 – Jun 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Hosted meetings with 80+ students. Tripled average membership over two years (10 → 30 members).</li>
+          <li data-lang="fr">Animation de réunions avec 80+ étudiants. Triplement du membership moyen en deux ans (10 → 30 membres).</li>
+          <li data-lang="en">Managed budget, programming, and supervised executive team using Microsoft Excel and Google Workspace.</li>
+          <li data-lang="fr">Gestion du budget, de la programmation et supervision de l'exécutif avec Excel et Google Workspace.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+       
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Aquatics Instructor: TAC Sports</span>
+            <span data-lang="fr">Instructeur de natation: TAC Sports</span>
+          </h3>
+          <span class="card-date">Oct 2022 – Sept 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Taught swimming, first aid, and lifesaving to children aged 3–14. National Lifeguard certified. Standard First Aid & CPR-C.</li>
+          <li data-lang="fr">Enseignement de la natation, des premiers secours et du sauvetage aux enfants de 3 à 14 ans. Sauveteur national certifié.</li>
+          <li data-lang="en">Improved internal systems and practiced metacognitive communication with parents and students.</li>
+          <li data-lang="fr">Amélioration des systèmes internes et communication métacognitive avec les parents et les élèves.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ATHLETICS -->
+  <section id="athletics">
+    <p class="section-label">
+      <span data-lang="en">Athletics</span>
+      <span data-lang="fr">Athlétisme</span>
+    </p>
+    <p class="about-text" style="margin-bottom: 24px; font-size: 0.92rem;">
+      <span data-lang="en">Endurance sport is how I practise discipline outside academics. What I learn on long runs and in open water: pacing, discomfort tolerance, showing up: carries directly into engineering and leadership.</span>
+      <span data-lang="fr">Le sport d'endurance est ma façon de pratiquer la discipline hors du acedemie. Ce que j'apprends sur les longues courses et en eau libre: le rythme, la tolérance à l'inconfort, la constance: s'applique directement en ingénierie et en leadership.</span>
+    </p>
+    <div class="race-grid">
+
+      <div class="race-card">
+        <p class="race-type">
+          <span data-lang="en">Marathon</span>
+          <span data-lang="fr">Marathon</span>
+        </p>
+        <p class="race-name">
+          <span data-lang="en">First Marathon <span class="badge">May</span></span>
+          <span data-lang="fr">Premier marathon <span class="badge">Mai</span></span>
+        </p>
+        <p class="race-stat">
+          <span data-lang="en">Finish time: 4:27</span>
+          <span data-lang="fr">Temps d'arrivée : 4:27</span>
+        </p>
+      </div>
+
+      <div class="race-card">
+        <p class="race-type">
+          <span data-lang="en">Triathlon</span>
+          <span data-lang="fr">Triathlon</span>
+        </p>
+        <p class="race-name">
+          <span data-lang="en">Half Ironman <span class="badge">June</span></span>
+          <span data-lang="fr">Demi-Ironman <span class="badge">Juin</span></span>
+        </p>
+        <p class="race-stat">
+          <span data-lang="en">1.9km swim · 90km bike · 21.1km run</span>
+          <span data-lang="fr">1,9 km nage · 90 km vélo · 21,1 km course</span>
+        </p>
+      </div>
+
+         <div class="race-card">
+        <p class="race-type">
+          <span data-lang="en">Ultimate Frisbee</span>
+          <span data-lang="fr">Frisbee ultime</span>
+        </p>
+        <p class="race-name">
+          <span data-lang="en">Varsity : 4 Years</span>
+          <span data-lang="fr">Équipe universitaire : 4 ans</span>
+        </p>
+        <p class="race-stat">
+          <span data-lang="en">Captain gr. 12 · MVP gr. 10 & 12 · Coaches Choice gr. 11</span>
+          <span data-lang="fr">Capitaine 12e · MVP 10e & 12e · Choix entraîneur 11e</span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <p class="section-label">
+      <span data-lang="en">Awards</span>
+      <span data-lang="fr">Prix & distinctions</span>
+    </p>
+    <div class="award-list">
+
+      <div class="award-item">
+        <span class="award-icon">🏅</span>
+        <div>
+          <h4>
+            <span data-lang="en">Aubrey Rhamey Award : June 2025</span>
+            <span data-lang="fr">Prix Aubrey Rhamey : Juin 2025</span>
+          </h4>
+          <p>
+            <span data-lang="en">Awarded for outstanding leadership in school activities.</span>
+            <span data-lang="fr">Décerné pour un leadership exceptionnel dans les activités scolaires.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-icon">🌟</span>
+        <div>
+          <h4>
+            <span data-lang="en">David Phillips Carpe Diem Award : June 2025</span>
+            <span data-lang="fr">Prix David Phillips Carpe Diem : Juin 2025</span>
+          </h4>
+          <p>
+            <span data-lang="en">Recognized for willingness to help others and a positive outlook on life.</span>
+            <span data-lang="fr">Reconnu pour sa volonté d'aider les autres et son regard positif sur la vie.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-icon">🎖️</span>
+        <div>
+          <h4>
+            <span data-lang="en">Leamen Memorial Award : October 2024</span>
+            <span data-lang="fr">Prix commémoratif Leamen : Octobre 2024</span>
+          </h4>
+          <p>
+            <span data-lang="en">Presented annually to the grade 11 student considered by staff to be the best citizen.</span>
+            <span data-lang="fr">Décerné chaque année à l'élève de 11e année considéré par le personnel comme le meilleur citoyen.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-icon">🎓</span>
+        <div>
+          <h4>
+            <span data-lang="en">Valedictorian : Shad UPEI, July 2024</span>
+            <span data-lang="fr">Major de promotion : Shad UPEI, Juillet 2024</span>
+          </h4>
+          <p>
+            <span data-lang="en">Named valedictorian of the Shad UPEI cohort.</span>
+            <span data-lang="fr">Nommé major de promotion de la cohorte Shad UPEI.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">
+      <span data-lang="en">Skills</span>
+      <span data-lang="fr">Compétences</span>
+    </p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Engineering & Design</span>
+          <span data-lang="fr">Ingénierie & conception</span>
+        </h4>
+        <ul>
+          <li>SolidWorks</li>
+          <li>Bambu Studio / Z-Suite</li>
+          <li>QFD · Pairwise · BOC · SWOT</li>
+          <li>3D Printing</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Programming</span>
+          <span data-lang="fr">Programmation</span>
+        </h4>
+        <ul>
+          <li>C++</li>
+          <li>MATLAB</li>
+          <li>HTML & CSS</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Lab & Science</span>
+          <span data-lang="fr">Laboratoire & sciences</span>
+        </h4>
+        <ul>
+          <li>Polymer lab work</li>
+          <li>Dialysis</li>
+          <li>Micro pipetting</li>
+          <li>WHMIS · TCPS 2</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Tools</span>
+          <span data-lang="fr">Outils</span>
+        </h4>
+        <ul>
+          <li>Microsoft Excel</li>
+          <li>Google Workspace</li>
+          <li>Canva</li>
+          <li>PowerPoint · Word</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Certifications</span>
+          <span data-lang="fr">Certifications</span>
+        </h4>
+        <ul>
+          <li>National Lifeguard</li>
+          <li>Standard First Aid + CPR-C</li>
+          <li>WHMIS</li>
+          <li>TCPS 2</li>
+          <li>Ontario G2 License</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h4>
+          <span data-lang="en">Languages</span>
+          <span data-lang="fr">Langues</span>
+        </h4>
+        <ul>
+          <li>
+            <span data-lang="en">English : Fluent</span>
+            <span data-lang="fr">Anglais : Courant</span>
+          </li>
+          <li>
+            <span data-lang="en">French : Fluent</span>
+            <span data-lang="fr">Français : Courant</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">
+      <span data-lang="en">Education</span>
+      <span data-lang="fr">Formation</span>
+    </p>
+    <div class="edu-block">
+      <div class="edu-dot"></div>
+      <div>
+        <h3>
+          <span data-lang="en">B.ASc. Biomedical Engineering</span>
+          <span data-lang="fr">B.ASc. Génie biomédical</span>
+        </h3>
+        <p>
+          <span data-lang="en">University of Waterloo · September 2025 – April 2030</span>
+          <span data-lang="fr">Université de Waterloo · Septembre 2025 – Avril 2030</span>
+        </p>
+        <p style="margin-top: 6px;">
+          <span data-lang="en">BME '30 ENG SOC representative. Coursework includes: Calculus, Physics, Chemistry, Human Factors, Engineering Design, Data Structures and Algorithms.</span>
+          <span data-lang="fr">Représentant ENG SOC BME '30. Cours : calcul, physique, chimie, Facteurs humains, conception en ingénierie.Structures de Données et Algorithmes.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">
+      <span data-lang="en">Contact</span>
+      <span data-lang="fr">Contact</span>
+    </p>
+    <p class="about-text" style="margin-bottom: 20px; font-size: 0.92rem;">
+      <span data-lang="en">Open to research opportunities, co-op placements, and interesting conversations about biomedical engineering.</span>
+      <span data-lang="fr">Ouvert aux opportunités de recherche, stages co-op, et conversations sur le génie biomédical.</span>
+    </p>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:m42murra@uwaterloo.ca">✉ m42murra@uwaterloo.ca</a>
+      <a class="contact-link" href="https://github.com/matthewjm42" target="_blank">⌥ GitHub</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/matthewmurray48" target="_blank">in LinkedIn</a>
+      <a class="contact-link" href="tel:6479206288">✆ 647-920-6288</a>
+      <a class="contact-link" href="Matthew_Murray_Resume__CV (1).pdf" download>↓ Download Resume</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>
+      <span data-lang="en">Built with HTML & CSS · Matthew Murray © 2025</span>
+      <span data-lang="fr">Fait en HTML & CSS · Matthew Murray © 2025</span>
+    </span>
+    <span>
+      <span data-lang="en">Biomedical Engineering · University of Waterloo</span>
+      <span data-lang="fr">Génie biomédical · Université de Waterloo</span>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      if (el.getAttribute('data-lang') === lang) {
+        el.classList.remove('lang-hidden');
+      } else {
+        el.classList.add('lang-hidden');
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+  }
+
+  setLang('en');
+</script>
+
+</body>
+</html>
