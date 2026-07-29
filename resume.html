@@ -30,10 +30,8 @@
       font-weight: 300;
       line-height: 1.7;
       min-height: 100vh;
-      transition: all 0.3s ease;
     }
 
-    /* grain overlay */
     body::before {
       content: '';
       position: fixed;
@@ -78,15 +76,12 @@
     }
     nav a:hover { color: var(--accent); }
 
-    /* Language toggle */
     .lang-toggle {
       display: flex;
       background: var(--card);
       border: 1px solid var(--faint);
       border-radius: 20px;
       overflow: hidden;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
     }
 
     .lang-btn {
@@ -114,6 +109,46 @@
       animation: fadeUp 0.7s ease both;
     }
 
+    .hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text { flex: 1; min-width: 280px; }
+
+    /* Profile photo */
+    .profile-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--faint);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .profile-photo-placeholder {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px dashed var(--faint);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 8px;
+      gap: 6px;
+    }
+
     .eyebrow {
       font-size: 0.7rem;
       letter-spacing: 0.22em;
@@ -124,17 +159,14 @@
 
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-size: clamp(2.8rem, 7vw, 5rem);
       font-weight: 300;
       line-height: 1.02;
       color: var(--cream);
       margin-bottom: 22px;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
+    h1 em { font-style: italic; color: var(--accent); }
 
     .tagline {
       color: var(--muted);
@@ -144,7 +176,6 @@
       margin-bottom: 28px;
     }
 
-    /* Currently bar */
     .currently {
       display: inline-flex;
       align-items: center;
@@ -173,7 +204,7 @@
       50% { opacity: 0.5; transform: scale(0.85); }
     }
 
-    /* ── SECTION LABELS ── */
+    /* ── SECTIONS ── */
     section { padding: 56px 0 0; }
 
     .section-label {
@@ -194,7 +225,6 @@
       background: var(--faint);
     }
 
-    /* ── ABOUT ── */
     .about-text {
       font-size: 1.02rem;
       color: var(--muted);
@@ -291,14 +321,10 @@
       text-transform: uppercase;
       text-align: center;
       padding: 12px;
-      transition: border-color 0.2s;
       overflow: hidden;
       position: relative;
     }
 
-    .photo-slot:hover { border-color: var(--accent-lo); }
-
-    /* Once you add a real photo, replace the slot with an <img> tag */
     .photo-slot img {
       position: absolute;
       inset: 0;
@@ -307,9 +333,6 @@
       object-fit: cover;
       border-radius: var(--radius);
     }
-
-    .photo-icon { font-size: 1.6rem; opacity: 0.3; }
-    .photo-caption { font-size: 0.7rem; color: var(--faint); margin-top: 4px; }
 
     /* ── ATHLETICS ── */
     .race-grid {
@@ -326,10 +349,7 @@
       transition: border-color 0.2s, transform 0.2s;
     }
 
-    .race-card:hover {
-      border-color: var(--accent-lo);
-      transform: translateY(-2px);
-    }
+    .race-card:hover { border-color: var(--accent-lo); transform: translateY(-2px); }
 
     .race-type {
       font-size: 0.66rem;
@@ -347,18 +367,10 @@
       margin-bottom: 4px;
     }
 
-    .race-stat {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .race-stat { font-size: 0.82rem; color: var(--muted); }
 
-    .race-stat strong {
-      color: var(--accent-hi);
-      font-weight: 400;
-      font-size: 1rem;
-    }
+    .race-stat strong { color: var(--accent-hi); font-weight: 400; font-size: 1rem; }
 
-    /* upcoming badge */
     .badge {
       display: inline-block;
       font-size: 0.62rem;
@@ -387,12 +399,7 @@
     }
 
     .award-item:hover { border-color: var(--accent-lo); }
-
-    .award-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .award-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
 
     .award-item h4 {
       font-family: 'Cormorant Garamond', serif;
@@ -501,14 +508,16 @@
     section:nth-of-type(6) { animation: fadeUp 0.6s 0.30s ease both; }
     section:nth-of-type(7) { animation: fadeUp 0.6s 0.35s ease both; }
     section:nth-of-type(8) { animation: fadeUp 0.6s 0.40s ease both; }
+    section:nth-of-type(9) { animation: fadeUp 0.6s 0.45s ease both; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-/* ── LANGUAGE TOGGLE ── */
+    /* ── LANGUAGE ── */
     .lang-hidden { display: none !important; }
+    [data-lang="fr"] { display: none; }
   </style>
 </head>
 <body>
@@ -517,14 +526,14 @@
   <!-- NAV -->
   <nav>
     <div class="nav-links">
-      <a href="#why">Why BME</a>
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#athletics">Athletics</a>
       <a href="#awards">Awards</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <a href="#why">Why BME</a>
     </div>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -534,43 +543,31 @@
 
   <!-- HERO -->
   <header>
-    <p class="eyebrow">
-      <span data-lang="en">Biomedical Engineering · University of Waterloo · First Year</span>
-      <span data-lang="fr">Génie biomédical · Université de Waterloo · Première année</span>
-    </p>
-    <h1>Matthew <em>Murray</em></h1>
-    <p class="tagline">
-      <span data-lang="en">Student of Engineering. Leader by nature. I translate complex ideas into clear outcomes: in the lab, on the team, and on the road.</span>
-      <span data-lang="fr">Étudiant en ingénierie. Leader par nature. Je traduis les idées complexes en résultats clairs: en laboratoire, en équipe, et sur la route.</span>
-    </p>
+    <div class="hero-inner">
 
-    <!-- CURRENTLY -->
-    <div class="currently">
-      <div class="currently-dot"></div>
-      <span data-lang="en"><strong>Currently:</strong> Research assistant UCalgary - Department of Clinical Neurosciences and Radiology · Half Ironman coming up in June</span>
-      <span data-lang="fr"><strong>Actuellement:</strong> 
-Assistante de recherche, Université de Calgary - Département des neurosciences cliniques et de radiologie · Demi-Ironman en juin</span>
+      <!-- TEXT -->
+      <div class="hero-text">
+        <p class="eyebrow">
+          <span data-lang="en">Biomedical Engineering · University of Waterloo · First Year</span>
+          <span data-lang="fr">Génie biomédical · Université de Waterloo · Première année</span>
+        </p>
+        <h1>Matthew <em>Murray</em></h1>
+        <p class="tagline">
+          <span data-lang="en">Student of Engineering. Leader by nature. I translate complex ideas into clear outcomes: in the lab, on the team, and on the road.</span>
+          <span data-lang="fr">Étudiant en ingénierie. Leader par nature. Je traduis les idées complexes en résultats clairs : en laboratoire, en équipe, et sur la route.</span>
+        </p>
+        <div class="currently">
+          <div class="currently-dot"></div>
+          <span data-lang="en"><strong>Currently:</strong> Research Assistant — UCalgary, Department of Clinical Neurosciences & Radiology</span>
+          <span data-lang="fr"><strong>En ce moment :</strong> Assistant de recherche — Université de Calgary, Département des neurosciences cliniques et de radiologie</span>
+        </div>
+      </div>
+
+      <img src="Headshot.jpeg" alt="Matthew Murray" class="profile-photo">
     </div>
   </header>
 
   <!-- ABOUT -->
-   <!-- WHY BIOMEDICAL -->
-  <section id="why">
-    <p class="section-label">
-      <span data-lang="en">Why Biomedical</span>
-      <span data-lang="fr">Pourquoi le génie biomédical</span>
-    </p>
-    <p class="about-text">
-      <span data-lang="en">
-        Three things pull me toward biomedical engineering. The first is <strong>assistive and accessibility device design</strong>: building and developping things that give people back capability they've lost, as I explored hands-on at UWaterloo's Biotron-Enable lab. The second is <strong>ergonomic design for sustained load</strong>: understanding what hours of sitting, improper posture, and compressive forces actually do to the lower back, and designing seating systems, particularly in vehicles, that account for that properly. The third is the <strong>blood–brain barrier</strong>: specifically low-intensity focused ultrasound as a way to open it. The brain is arguably the hardest place in the body to deliver a drug to, and the fact that sound waves may be the key to solving that is the kind of engineering problem I find tricky to stop thinking about.
-        <br><br><strong>Engineering that meets the body where it actually is.</strong>
-      </span>
-      <span data-lang="fr">
-        Trois choses m'attirent vers le génie biomédical. La première est la <strong>conception de dispositifs d'assistance</strong> : construire et développer des outils qui redonnent des capacités aux personnes, comme je l'ai exploré concrètement au laboratoire Biotron-Enable de UWaterloo. La deuxième est la <strong>conception ergonomique pour charge soutenue</strong> : comprendre ce que des heures assises, une mauvaise posture et des forces compressives font réellement au bas du dos, et concevoir des systèmes de siège, notamment dans les véhicules, qui en tiennent compte correctement. La troisième est la <strong>barrière hémato-encéphalique</strong> : plus précisément les ultrasons focalisés de faible intensité pour l'ouvrir. Le cerveau est l'endroit le plus difficile du corps pour livrer un médicament, et le fait que les ondes sonores puissent être la clé de ce problème est exactement le genre de problème d'ingénierie auquel je n'arrête pas de penser.
-        <br><br><strong>Un génie qui rencontre le corps là où il se trouve réellement.</strong>
-      </span>
-    </p>
-  </section>
   <section id="about">
     <p class="section-label">
       <span data-lang="en">About Me</span>
@@ -586,28 +583,112 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
     </p>
   </section>
 
- <!-- PHOTOS -->
-<section id="photos">
-  <p class="section-label">
-    <span data-lang="en">Leadership in Action</span>
-    <span data-lang="fr">Leadership en action</span>
-  </p>
-  <div class="photo-grid">
-
-    <div class="photo-slot">
-      <img src="Headbudphoto.jpg" alt="Head Buddies">
-    </div>
-
-    <div class="photo-slot">
-      <img src="Engclubphoto.JPEG" alt="Engineering Club" style="width:100%;height:100%;object-fit:cover;">
+  <!-- PHOTOS -->
+  <section id="photos">
+    <p class="section-label">
+      <span data-lang="en">Leadership in Action</span>
+      <span data-lang="fr">Leadership en action</span>
+    </p>
+    <div class="photo-grid">
+      <div class="photo-slot">
+        <img src="Headbudphoto.jpg" alt="Head Buddies">
       </div>
       <div class="photo-slot">
-        <img src="ShadIDPhoto.JPEG" alt="ShadIDPhoto" style="width:100%;height:100%;object-fit:cover;">
-        <span>
-          <span data-lang="en">Shad UPEI / project photo</span>
-          <span data-lang="fr">Photo Shad UPEI / projet</span>
-        </span>
+        <img src="Engclubphoto.JPEG" alt="Engineering Club" style="width:100%;height:100%;object-fit:cover;">
       </div>
+      <div class="photo-slot">
+        <img src="ShadIDPhoto.JPEG" alt="Shad UPEI" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">
+      <span data-lang="en">Experience</span>
+      <span data-lang="fr">Expérience</span>
+    </p>
+    <div class="card-grid">
+
+      <!-- RESEARCH ASSISTANT -->
+      <div class="card">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Research Assistant — University of Calgary</span>
+            <span data-lang="fr">Assistant de recherche — Université de Calgary</span>
+          </h3>
+          <span class="card-date">May 2026 – Aug 2026</span>
+        </div>
+        <ul>
+          <li data-lang="en">Designed and conducted 20+ qualitative interviews to identify the informational needs of patients with degenerative cervical myelopathy (DCM).</li>
+          <li data-lang="fr">Conception et réalisation de 20+ entretiens qualitatifs pour identifier les besoins informationnels des patients atteints de myélopathie cervicale dégénérative.</li>
+          <li data-lang="en">Analyzed qualitative data using thematic coding to guide the design of a personalized clinical reporting system.</li>
+          <li data-lang="fr">Analyse des données qualitatives par codage thématique pour orienter la conception d'un système de rapport clinique personnalisé.</li>
+          <li data-lang="en">Designed a patient-facing precision medicine report in Figma to improve communication of individualized clinical data.</li>
+          <li data-lang="fr">Conception d'un rapport de médecine de précision destiné aux patients dans Figma pour améliorer la communication des données cliniques individualisées.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Clinical Research</span>
+          <span class="tag">Qualitative Methods</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Medical Imaging</span>
+          <span class="tag">DCM</span>
+        </div>
+      </div>
+
+      <!-- HEAD BUDDIES -->
+      <div class="card">
+        <img src="Budleadershipphoto.jpg" alt="Head Buddies" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Head Buddies — Co-Head & Team Lead</span>
+            <span data-lang="fr">Head Buddies — Co-responsable & chef d'équipe</span>
+          </h3>
+          <span class="card-date">Mar 2024 – Jun 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Co-designed the application and interview process, recruiting and training a leadership team of 70+ senior students.</li>
+          <li data-lang="fr">Co-conception du processus de candidature et d'entretien, recrutement et formation d'une équipe de 70+ leaders étudiants.</li>
+          <li data-lang="en">Led 12 team leaders delivering weekly sessions on leadership, equity, bullying, peer pressure, and study habits for 250+ grade 9 students.</li>
+          <li data-lang="fr">Direction de 12 leaders animant des séances hebdomadaires sur le leadership, l'équité, l'intimidation et les habitudes d'étude pour 250+ élèves de 9e année.</li>
+        </ul>
+      </div>
+
+      <!-- ENGINEERING CLUB -->
+      <div class="card">
+        <img src="Engphotoconference.JPEG" alt="Engineering Club" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Engineering Club — Co-President</span>
+            <span data-lang="fr">Club d'ingénierie — Co-président</span>
+          </h3>
+          <span class="card-date">Sept 2023 – Jun 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Directed weekly meetings and programming for an 80+ member club, tripling active membership over two years (10 → 30).</li>
+          <li data-lang="fr">Direction des réunions hebdomadaires et de la programmation d'un club de 80+ membres, triplement du membership actif en deux ans.</li>
+          <li data-lang="en">Managed budget, communications, and event logistics using Excel, Microsoft Office, and Google Workspace.</li>
+          <li data-lang="fr">Gestion du budget, des communications et de la logistique des événements avec Excel, Microsoft Office et Google Workspace.</li>
+        </ul>
+      </div>
+
+      <!-- AQUATICS -->
+      <div class="card">
+        <div class="card-header">
+          <h3>
+            <span data-lang="en">Aquatics Instructor — TAC Sports</span>
+            <span data-lang="fr">Instructeur de natation — TAC Sports</span>
+          </h3>
+          <span class="card-date">Oct 2022 – Sept 2025</span>
+        </div>
+        <ul>
+          <li data-lang="en">Taught swimming, first aid, and lifesaving to children aged 3–14. National Lifeguard certified, Standard First Aid & CPR-C.</li>
+          <li data-lang="fr">Enseignement de la natation, des premiers secours et du sauvetage aux enfants de 3 à 14 ans. Sauveteur national certifié.</li>
+          <li data-lang="en">Improved internal systems and practiced metacognitive communication with parents and students.</li>
+          <li data-lang="fr">Amélioration des systèmes internes et communication métacognitive avec les parents et les élèves.</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
@@ -621,21 +702,21 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
 
       <div class="card">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
-  <img src="actualbiotronkeyphoto.JPEG" alt="Biotron project" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
-  <img src="cadbiotronholder.JPEG" alt="Biotron project" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
-</div>
-<div class="card-header">
+          <img src="actualbiotronkeyphoto.JPEG" alt="Biotron key device" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
+          <img src="cadbiotronholder.JPEG" alt="Biotron CAD" style="width:100%;height:180px;object-fit:cover;border-radius:6px;">
+        </div>
+        <div class="card-header">
           <h3>
-            <span data-lang="en">UWaterloo Biotron-Enable: Assistive Devices</span>
-            <span data-lang="fr">UWaterloo Biotron-Enable: Appareils d'assistance</span>
+            <span data-lang="en">UWaterloo Biotron-Enable — Assistive Devices</span>
+            <span data-lang="fr">UWaterloo Biotron-Enable — Appareils d'assistance</span>
           </h3>
           <span class="card-date">Dec 2025 – Feb 2026</span>
         </div>
         <ul>
-          <li data-lang="en">Designed, prototyped and tested a 3D-printed key usability aid for individuals with arthritis, considering grip force, hand placement and manufacturability.</li>
-          <li data-lang="fr">Conception, prototypage et test d'un aide à l'utilisation des clés imprimée en 3D pour les personnes arthritiques.</li>
-          <li data-lang="en">Designed and printed braille keycaps for an individual with visual impairment.</li>
-          <li data-lang="fr">Conception et impression de touches braille pour une personne malvoyante.</li>
+          <li data-lang="en">Designed and manufactured a custom key holder in SolidWorks to improve usability for individuals with arthritis, iteratively evaluating grip force, hand placement, and manufacturability.</li>
+          <li data-lang="fr">Conception et fabrication d'un porte-clés personnalisé dans SolidWorks pour améliorer l'utilisation par les personnes arthritiques.</li>
+          <li data-lang="en">Created and manufactured Braille keyboard keycaps to support an individual with visual impairment.</li>
+          <li data-lang="fr">Création et fabrication de touches braille pour soutenir une personne malvoyante.</li>
         </ul>
         <div class="tag-row">
           <span class="tag">SolidWorks</span>
@@ -646,19 +727,19 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
       </div>
 
       <div class="card">
-        <img src="CPboardgame.JPEG" alt="description" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <img src="CPboardgame.JPEG" alt="Board game project" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
         <div class="card-header">
           <h3>
-            <span data-lang="en">Accessibility Design Project: Board Games & Cerebral Palsy</span>
-            <span data-lang="fr">Projet de conception accessible: Jeux de société & Paralysie cérébrale</span>
+            <span data-lang="en">Board Game Design — Cerebral Palsy Accessibility</span>
+            <span data-lang="fr">Conception de jeux de société — Accessibilité paralysie cérébrale</span>
           </h3>
           <span class="card-date">Sept – Dec 2025</span>
         </div>
         <ul>
-          <li data-lang="en">Followed the full engineering design process to improve board game accessibility for children aged 8–11 with spastic cerebral palsy.</li>
-          <li data-lang="fr">Suivi du processus de conception en ingénierie pour améliorer l'accessibilité des jeux de société pour les enfants de 8 à 11 ans atteints de paralysie cérébrale spastique.</li>
-          <li data-lang="en">Applied QFD, Pairwise, BOC, and SWOT analysis frameworks.</li>
-          <li data-lang="fr">Application des outils QFD, Pairwise, BOC et analyse SWOT.</li>
+          <li data-lang="en">Applied a user-centered engineering design process to improve board game accessibility for children aged 8–11 with spastic cerebral palsy.</li>
+          <li data-lang="fr">Application d'un processus de conception centré sur l'utilisateur pour améliorer l'accessibilité des jeux de société pour les enfants de 8 à 11 ans.</li>
+          <li data-lang="en">Applied QFD, Pairwise, BOC, and SWOT analyses to translate user needs into design requirements.</li>
+          <li data-lang="fr">Application des analyses QFD, Pairwise, BOC et SWOT pour traduire les besoins des utilisateurs en exigences de conception.</li>
         </ul>
         <div class="tag-row">
           <span class="tag">QFD</span>
@@ -669,111 +750,23 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
       </div>
 
       <div class="card">
-        <img src="Shaddoingstuff.JPEG" alt="description" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <img src="Shaddoingstuff.JPEG" alt="Shad UPEI" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
         <div class="card-header">
           <h3>
-            <span data-lang="en">Shad UPEI: Clean Energy Design Challenge</span>
-            <span data-lang="fr">Shad UPEI: Défi conception énergie propre</span>
+            <span data-lang="en">Shad UPEI — Clean Energy Design Challenge</span>
+            <span data-lang="fr">Shad UPEI — Défi conception énergie propre</span>
           </h3>
           <span class="card-date">July 2024</span>
         </div>
         <p>
-          <span data-lang="en">Month-long intensive program. Collaborated on a design solution for clean, affordable energy and energy reduction.</span>
-          <span data-lang="fr">Programme intensif d'un mois. Collaboration sur une solution de conception pour une énergie propre et abordable.</span>
+          <span data-lang="en">Month-long intensive program. Collaborated on a design solution for clean, affordable energy and energy reduction. Named <strong>Valedictorian</strong> of the cohort.</span>
+          <span data-lang="fr">Programme intensif d'un mois. Collaboration sur une solution de conception pour une énergie propre et abordable. Nommé <strong>major de promotion</strong>.</span>
         </p>
         <div class="tag-row">
           <span class="tag">Team Design</span>
           <span class="tag">Clean Energy</span>
           <span class="tag">Valedictorian</span>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="section-label">
-      <span data-lang="en">Experience</span>
-      <span data-lang="fr">Expérience</span>
-    </p>
-    <div class="card-grid">
-
-<div class="card">
-        <div class="card-header">
-          <h3>
-            <span data-lang="en">Research Assistant — University of Calgary</span>
-            <span data-lang="fr">Assistant de recherche — Université de Calgary</span>
-          </h3>
-          <span class="card-date">May 2026 – Present</span>
-        </div>
-        <ul>
-          <li data-lang="en">Working within the Department of Clinical Neurosciences and Radiology on precision medicine reports for patients with degenerative cervical myelopathy (DCM).</li>
-          <li data-lang="fr">Travail au sein du Département des neurosciences cliniques et de radiologie sur des rapports de médecine de précision pour les patients atteints de myélopathie cervicale dégénérative.</li>
-          <li data-lang="en">Gathering clinical and imaging data from enrolled study participants; processing advanced imaging data using standardized tools.</li>
-          <li data-lang="fr">Collecte de données cliniques et d'imagerie auprès des participants à l'étude; traitement des données d'imagerie avancées avec des outils standardisés.</li>
-          <li data-lang="en">Co-authoring a research paper on what patients want to know about their DCM diagnosis, combining quantitative and qualitative data.</li>
-          <li data-lang="fr">Co-rédaction d'un article de recherche sur ce que les patients souhaitent savoir sur leur diagnostic de myélopathie cervicale dégénérative.</li>
-          <li data-lang="en">Reviewing precision medicine reports directly with patients to evaluate understanding, clarity, and treatment expectations.</li>
-          <li data-lang="fr">Révision des rapports de médecine de précision avec les patients pour évaluer leur compréhension et leurs attentes face au traitement.</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">Clinical Research</span>
-          <span class="tag">Medical Imaging</span>
-          <span class="tag">Patient Interaction</span>
-          <span class="tag">Peer Review Paper</span>
-          <span class="tag">DCM</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="Budleadershipphoto.jpg" alt="Head Buddies" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
-        <div class="card-header">
-          <h3>
-            <span data-lang="en">Head Buddies: Co-Head & Team Lead</span> <span data-lang="fr">Head Buddies: Co-responsable & chef d'équipe</span>
-          </h3>
-          <span class="card-date">Mar 2024 – Jun 2025</span>
-        </div>
-        <ul>
-          <li data-lang="en">Developed the application process (written + interview) and built a team of 70+ student leaders working with 250+ grade 9 students.</li>
-          <li data-lang="fr">Développé le processus de candidature et constitution d'une équipe de 70+ leaders étudiants accompagnant 250+ élèves de 9e année.</li>
-          <li data-lang="en">Ran weekly sessions on equity, bullying, peer pressure, and study habits. Directed 12 in-class supervisors.</li>
-          <li data-lang="fr">Animation de séances hebdomadaires sur l'équité, l'intimidation, la pression des pairs et les habitudes d'étude. Direction de 12 superviseurs en classe.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <img src="Engphotoconference.JPEG" alt="Engphotoconference" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
-        <div class="card-header">
-          <h3>
-            <span data-lang="en">Engineering Club: President</span>
-            <span data-lang="fr">Club d'ingénierie: Président</span>
-          </h3>
-          <span class="card-date">Sept 2023 – Jun 2025</span>
-        </div>
-        <ul>
-          <li data-lang="en">Hosted meetings with 80+ students. Tripled average membership over two years (10 → 30 members).</li>
-          <li data-lang="fr">Animation de réunions avec 80+ étudiants. Triplement du membership moyen en deux ans (10 → 30 membres).</li>
-          <li data-lang="en">Managed budget, programming, and supervised executive team using Microsoft Excel and Google Workspace.</li>
-          <li data-lang="fr">Gestion du budget, de la programmation et supervision de l'exécutif avec Excel et Google Workspace.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-       
-        <div class="card-header">
-          <h3>
-            <span data-lang="en">Aquatics Instructor: TAC Sports</span>
-            <span data-lang="fr">Instructeur de natation: TAC Sports</span>
-          </h3>
-          <span class="card-date">Oct 2022 – Sept 2025</span>
-        </div>
-        <ul>
-          <li data-lang="en">Taught swimming, first aid, and lifesaving to children aged 3–14. National Lifeguard certified. Standard First Aid & CPR-C.</li>
-          <li data-lang="fr">Enseignement de la natation, des premiers secours et du sauvetage aux enfants de 3 à 14 ans. Sauveteur national certifié.</li>
-          <li data-lang="en">Improved internal systems and practiced metacognitive communication with parents and students.</li>
-          <li data-lang="fr">Amélioration des systèmes internes et communication métacognitive avec les parents et les élèves.</li>
-        </ul>
       </div>
 
     </div>
@@ -786,8 +779,8 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
       <span data-lang="fr">Athlétisme</span>
     </p>
     <p class="about-text" style="margin-bottom: 24px; font-size: 0.92rem;">
-      <span data-lang="en">Endurance sport is how I practise discipline outside academics. What I learn on long runs and in open water: pacing, discomfort tolerance, showing up: carries directly into engineering and leadership.</span>
-      <span data-lang="fr">Le sport d'endurance est ma façon de pratiquer la discipline hors du acedemie. Ce que j'apprends sur les longues courses et en eau libre: le rythme, la tolérance à l'inconfort, la constance: s'applique directement en ingénierie et en leadership.</span>
+      <span data-lang="en">Endurance sport is how I practise discipline outside academics. What I learn on long runs and in open water — pacing, discomfort tolerance, showing up — carries directly into engineering and leadership.</span>
+      <span data-lang="fr">Le sport d'endurance est ma façon de pratiquer la discipline hors des études. Ce que j'apprends sur les longues courses et en eau libre — le rythme, la tolérance à l'inconfort, la constance — s'applique directement en ingénierie et en leadership.</span>
     </p>
     <div class="race-grid">
 
@@ -797,12 +790,12 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
           <span data-lang="fr">Marathon</span>
         </p>
         <p class="race-name">
-          <span data-lang="en">First Marathon <span class="badge">May</span></span>
-          <span data-lang="fr">Premier marathon <span class="badge">Mai</span></span>
+          <span data-lang="en">First Marathon</span>
+          <span data-lang="fr">Premier marathon</span>
         </p>
         <p class="race-stat">
-          <span data-lang="en">Finish time: 4:27</span>
-          <span data-lang="fr">Temps d'arrivée : 4:27</span>
+          <span data-lang="en">Finish time: <strong>4:27</strong> · May 2026</span>
+          <span data-lang="fr">Temps d'arrivée : <strong>4:27</strong> · Mai 2026</span>
         </p>
       </div>
 
@@ -812,8 +805,8 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
           <span data-lang="fr">Triathlon</span>
         </p>
         <p class="race-name">
-          <span data-lang="en">Half Ironman <span class="badge">June</span></span>
-          <span data-lang="fr">Demi-Ironman <span class="badge">Juin</span></span>
+          <span data-lang="en">Ironman 70.3 <span class="badge">July</span></span>
+          <span data-lang="fr">Ironman 70.3 <span class="badge">Juillet</span></span>
         </p>
         <p class="race-stat">
           <span data-lang="en">1.9km swim · 90km bike · 21.1km run</span>
@@ -821,14 +814,14 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
         </p>
       </div>
 
-         <div class="race-card">
+      <div class="race-card">
         <p class="race-type">
           <span data-lang="en">Ultimate Frisbee</span>
           <span data-lang="fr">Frisbee ultime</span>
         </p>
         <p class="race-name">
-          <span data-lang="en">Varsity : 4 Years</span>
-          <span data-lang="fr">Équipe universitaire : 4 ans</span>
+          <span data-lang="en">Varsity — 4 Years</span>
+          <span data-lang="fr">Équipe varsity — 4 ans</span>
         </p>
         <p class="race-stat">
           <span data-lang="en">Captain gr. 12 · MVP gr. 10 & 12 · Coaches Choice gr. 11</span>
@@ -848,29 +841,15 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
     <div class="award-list">
 
       <div class="award-item">
-        <span class="award-icon">🏅</span>
-        <div>
-          <h4>
-            <span data-lang="en">Aubrey Rhamey Award : June 2025</span>
-            <span data-lang="fr">Prix Aubrey Rhamey : Juin 2025</span>
-          </h4>
-          <p>
-            <span data-lang="en">Awarded for outstanding leadership in school activities.</span>
-            <span data-lang="fr">Décerné pour un leadership exceptionnel dans les activités scolaires.</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="award-item">
         <span class="award-icon">🌟</span>
         <div>
           <h4>
-            <span data-lang="en">David Phillips Carpe Diem Award : June 2025</span>
-            <span data-lang="fr">Prix David Phillips Carpe Diem : Juin 2025</span>
+            <span data-lang="en">David Phillips Carpe Diem Award — June 2025</span>
+            <span data-lang="fr">Prix David Phillips Carpe Diem — Juin 2025</span>
           </h4>
           <p>
-            <span data-lang="en">Recognized for willingness to help others and a positive outlook on life.</span>
-            <span data-lang="fr">Reconnu pour sa volonté d'aider les autres et son regard positif sur la vie.</span>
+            <span data-lang="en">Recognized for outstanding leadership, community service, and positive community impact.</span>
+            <span data-lang="fr">Reconnu pour son leadership exceptionnel, son service communautaire et son impact positif.</span>
           </p>
         </div>
       </div>
@@ -879,8 +858,8 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
         <span class="award-icon">🎖️</span>
         <div>
           <h4>
-            <span data-lang="en">Leamen Memorial Award : October 2024</span>
-            <span data-lang="fr">Prix commémoratif Leamen : Octobre 2024</span>
+            <span data-lang="en">Leamen Memorial Award — October 2024</span>
+            <span data-lang="fr">Prix commémoratif Leamen — Octobre 2024</span>
           </h4>
           <p>
             <span data-lang="en">Presented annually to the grade 11 student considered by staff to be the best citizen.</span>
@@ -893,8 +872,8 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
         <span class="award-icon">🎓</span>
         <div>
           <h4>
-            <span data-lang="en">Valedictorian : Shad UPEI, July 2024</span>
-            <span data-lang="fr">Major de promotion : Shad UPEI, Juillet 2024</span>
+            <span data-lang="en">Valedictorian — Shad UPEI, July 2024</span>
+            <span data-lang="fr">Major de promotion — Shad UPEI, Juillet 2024</span>
           </h4>
           <p>
             <span data-lang="en">Named valedictorian of the Shad UPEI cohort.</span>
@@ -916,14 +895,15 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
 
       <div class="skill-group">
         <h4>
-          <span data-lang="en">Engineering & Design</span>
-          <span data-lang="fr">Ingénierie & conception</span>
+          <span data-lang="en">Design & CAD</span>
+          <span data-lang="fr">Conception & CAO</span>
         </h4>
         <ul>
           <li>SolidWorks</li>
+          <li>Figma</li>
           <li>Bambu Studio / Z-Suite</li>
+          <li>Canva</li>
           <li>QFD · Pairwise · BOC · SWOT</li>
-          <li>3D Printing</li>
         </ul>
       </div>
 
@@ -936,32 +916,46 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
           <li>C++</li>
           <li>MATLAB</li>
           <li>HTML & CSS</li>
+          <li>
+            <span data-lang="en">JavaScript (learning)</span>
+            <span data-lang="fr">JavaScript (en apprentissage)</span>
+          </li>
         </ul>
       </div>
 
       <div class="skill-group">
         <h4>
-          <span data-lang="en">Lab & Science</span>
-          <span data-lang="fr">Laboratoire & sciences</span>
+          <span data-lang="en">Research & Lab</span>
+          <span data-lang="fr">Recherche & laboratoire</span>
         </h4>
         <ul>
-          <li>Polymer lab work</li>
-          <li>Dialysis</li>
-          <li>Micro pipetting</li>
+          <li>
+            <span data-lang="en">Qualitative interviews</span>
+            <span data-lang="fr">Entretiens qualitatifs</span>
+          </li>
+          <li>
+            <span data-lang="en">Thematic coding</span>
+            <span data-lang="fr">Codage thématique</span>
+          </li>
+          <li>
+            <span data-lang="en">Literature & scoping reviews</span>
+            <span data-lang="fr">Revues de littérature</span>
+          </li>
+          <li>Micropipetting</li>
           <li>WHMIS · TCPS 2</li>
         </ul>
       </div>
 
       <div class="skill-group">
         <h4>
-          <span data-lang="en">Tools</span>
-          <span data-lang="fr">Outils</span>
+          <span data-lang="en">Software</span>
+          <span data-lang="fr">Logiciels</span>
         </h4>
         <ul>
           <li>Microsoft Excel</li>
           <li>Google Workspace</li>
-          <li>Canva</li>
           <li>PowerPoint · Word</li>
+          <li>VS Code · CLion</li>
         </ul>
       </div>
 
@@ -986,12 +980,12 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
         </h4>
         <ul>
           <li>
-            <span data-lang="en">English : Fluent</span>
-            <span data-lang="fr">Anglais : Courant</span>
+            <span data-lang="en">English — Fluent</span>
+            <span data-lang="fr">Anglais — Courant</span>
           </li>
           <li>
-            <span data-lang="en">French : Fluent</span>
-            <span data-lang="fr">Français : Courant</span>
+            <span data-lang="en">French — Fluent</span>
+            <span data-lang="fr">Français — Courant</span>
           </li>
         </ul>
       </div>
@@ -1017,8 +1011,8 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
           <span data-lang="fr">Université de Waterloo · Septembre 2025 – Avril 2030</span>
         </p>
         <p style="margin-top: 6px;">
-          <span data-lang="en">BME '30 ENG SOC representative. Coursework includes: Calculus, Physics, Chemistry, Human Factors, Engineering Design, Data Structures and Algorithms.</span>
-          <span data-lang="fr">Représentant ENG SOC BME '30. Cours : calcul, physique, chimie, Facteurs humains, conception en ingénierie.Structures de Données et Algorithmes.</span>
+          <span data-lang="en">BME '30 · ENG SOC representative. Coursework: Calculus, Physics, Chemistry, Human Factors, Engineering Design, Data Structures & Algorithms.</span>
+          <span data-lang="fr">BME '30 · Représentant ENG SOC. Cours : calcul, physique, chimie, facteurs humains, conception en ingénierie, structures de données et algorithmes.</span>
         </p>
       </div>
     </div>
@@ -1043,11 +1037,29 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
     </div>
   </section>
 
+  <!-- WHY BIOMEDICAL — at the bottom -->
+  <section id="why">
+    <p class="section-label">
+      <span data-lang="en">Why Biomedical</span>
+      <span data-lang="fr">Pourquoi le génie biomédical</span>
+    </p>
+    <p class="about-text">
+      <span data-lang="en">
+        Two things pull me toward biomedical engineering. The first is <strong>assistive, accessibility, and medical device design</strong>: building things that give people back capability they've lost — whether that's a 3D-printed key holder for someone with arthritis, a Braille keycap for someone with visual impairment, or the kind of precision diagnostic tools used in hospital settings every day. I want to design devices that actually reach patients, not just prototypes. The second is <strong>ergonomic design for sustained load</strong>: understanding what hours of sitting, improper posture, and compressive forces actually do to the lower back, and designing seating systems — particularly in vehicles — that account for that properly.
+        <br><br><strong>Engineering that meets the body where it actually is.</strong>
+      </span>
+      <span data-lang="fr">
+        Deux choses m'attirent vers le génie biomédical. La première est la <strong>conception de dispositifs d'assistance, d'accessibilité et médicaux</strong> : construire des outils qui redonnent des capacités aux personnes — qu'il s'agisse d'un porte-clés imprimé en 3D pour une personne arthritique, de touches braille pour une personne malvoyante, ou des outils diagnostiques de précision utilisés quotidiennement en milieu hospitalier. Je veux concevoir des dispositifs qui atteignent réellement les patients. La deuxième est la <strong>conception ergonomique pour charge soutenue</strong> : comprendre ce que des heures assises, une mauvaise posture et des forces compressives font réellement au bas du dos, et concevoir des systèmes de siège — notamment dans les véhicules — qui en tiennent compte correctement.
+        <br><br><strong>Un génie qui rencontre le corps là où il se trouve réellement.</strong>
+      </span>
+    </p>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <span>
-      <span data-lang="en">Built with HTML & CSS · Matthew Murray © 2025</span>
-      <span data-lang="fr">Fait en HTML & CSS · Matthew Murray © 2025</span>
+      <span data-lang="en">Built with HTML & CSS · Matthew Murray © 2026</span>
+      <span data-lang="fr">Fait en HTML & CSS · Matthew Murray © 2026</span>
     </span>
     <span>
       <span data-lang="en">Biomedical Engineering · University of Waterloo</span>
@@ -1070,7 +1082,6 @@ Assistante de recherche, Université de Calgary - Département des neurosciences
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
   }
-
   setLang('en');
 </script>
 
