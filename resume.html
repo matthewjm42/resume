@@ -50,7 +50,6 @@
       z-index: 1;
     }
 
-    /* ── NAV ── */
     nav {
       display: flex;
       justify-content: space-between;
@@ -60,11 +59,7 @@
       gap: 12px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+    .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
 
     nav a {
       color: var(--muted);
@@ -97,28 +92,17 @@
       letter-spacing: 0.1em;
     }
 
-    .lang-btn.active {
-      background: var(--accent);
-      color: var(--cream);
-    }
+    .lang-btn.active { background: var(--accent); color: var(--cream); }
 
-    /* ── HERO ── */
     header {
       padding: 68px 0 56px;
       border-bottom: 1px solid var(--faint);
       animation: fadeUp 0.7s ease both;
     }
 
-    .hero-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
+    .hero-inner { display: flex; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
     .hero-text { flex: 1; min-width: 280px; }
 
-    /* Profile photo */
     .profile-photo {
       width: 140px;
       height: 140px;
@@ -127,26 +111,6 @@
       border: 2px solid var(--faint);
       flex-shrink: 0;
       margin-top: 8px;
-    }
-
-    .profile-photo-placeholder {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px dashed var(--faint);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.68rem;
-      color: var(--faint);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: center;
-      flex-shrink: 0;
-      margin-top: 8px;
-      gap: 6px;
     }
 
     .eyebrow {
@@ -204,7 +168,6 @@
       50% { opacity: 0.5; transform: scale(0.85); }
     }
 
-    /* ── SECTIONS ── */
     section { padding: 56px 0 0; }
 
     .section-label {
@@ -218,23 +181,11 @@
       gap: 12px;
     }
 
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--faint);
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--faint); }
 
-    .about-text {
-      font-size: 1.02rem;
-      color: var(--muted);
-      max-width: 660px;
-      line-height: 1.85;
-    }
-
+    .about-text { font-size: 1.02rem; color: var(--muted); max-width: 660px; line-height: 1.85; }
     .about-text strong { color: var(--cream); font-weight: 400; }
 
-    /* ── CARDS ── */
     .card-grid { display: grid; gap: 12px; }
 
     .card {
@@ -245,11 +196,7 @@
       transition: border-color 0.25s, transform 0.2s, background 0.2s;
     }
 
-    .card:hover {
-      border-color: var(--accent-lo);
-      background: var(--card-hover);
-      transform: translateY(-2px);
-    }
+    .card:hover { border-color: var(--accent-lo); background: var(--card-hover); transform: translateY(-2px); }
 
     .card-header {
       display: flex;
@@ -267,23 +214,9 @@
       color: var(--cream);
     }
 
-    .card-date {
-      font-size: 0.73rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      white-space: nowrap;
-    }
-
+    .card-date { font-size: 0.73rem; color: var(--muted); letter-spacing: 0.06em; white-space: nowrap; }
     .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-
-    .card ul {
-      margin-top: 6px;
-      padding-left: 16px;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
+    .card ul { margin-top: 6px; padding-left: 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
 
     .tag {
@@ -297,49 +230,20 @@
       padding: 3px 9px;
     }
 
-    /* ── PHOTO GRID ── */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 4px;
-    }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px; }
 
     .photo-slot {
       aspect-ratio: 4/3;
       background: var(--card);
       border: 1px dashed var(--faint);
       border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--faint);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 12px;
       overflow: hidden;
       position: relative;
     }
 
-    .photo-slot img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: var(--radius);
-    }
+    .photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
 
-    /* ── ATHLETICS ── */
-    .race-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px;
-    }
+    .race-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 
     .race-card {
       background: var(--card);
@@ -368,7 +272,6 @@
     }
 
     .race-stat { font-size: 0.82rem; color: var(--muted); }
-
     .race-stat strong { color: var(--accent-hi); font-weight: 400; font-size: 1rem; }
 
     .badge {
@@ -384,7 +287,6 @@
       vertical-align: middle;
     }
 
-    /* ── AWARDS ── */
     .award-list { display: grid; gap: 10px; }
 
     .award-item {
@@ -411,12 +313,7 @@
 
     .award-item p { font-size: 0.82rem; color: var(--muted); }
 
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 12px;
-    }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
 
     .skill-group {
       background: var(--card);
@@ -444,7 +341,6 @@
 
     .skill-group li:last-child { border-bottom: none; }
 
-    /* ── EDUCATION ── */
     .edu-block { display: flex; gap: 20px; align-items: flex-start; }
 
     .edu-dot {
@@ -466,7 +362,6 @@
 
     .edu-block p { font-size: 0.88rem; color: var(--muted); }
 
-    /* ── CONTACT ── */
     .contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
 
     .contact-link {
@@ -484,7 +379,6 @@
 
     .contact-link:hover { color: var(--accent); border-color: var(--accent-lo); }
 
-    /* ── FOOTER ── */
     footer {
       margin-top: 80px;
       padding-top: 22px;
@@ -498,7 +392,6 @@
       gap: 8px;
     }
 
-    /* ── ANIMATIONS ── */
     header { animation: fadeUp 0.6s ease both; }
     section:nth-of-type(1) { animation: fadeUp 0.6s 0.05s ease both; }
     section:nth-of-type(2) { animation: fadeUp 0.6s 0.10s ease both; }
@@ -510,12 +403,8 @@
     section:nth-of-type(8) { animation: fadeUp 0.6s 0.40s ease both; }
     section:nth-of-type(9) { animation: fadeUp 0.6s 0.45s ease both; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ── LANGUAGE ── */
     .lang-hidden { display: none !important; }
     [data-lang="fr"] { display: none; }
   </style>
@@ -523,7 +412,6 @@
 <body>
 <div class="page">
 
-  <!-- NAV -->
   <nav>
     <div class="nav-links">
       <a href="#about">About</a>
@@ -541,11 +429,8 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <header>
     <div class="hero-inner">
-
-      <!-- TEXT -->
       <div class="hero-text">
         <p class="eyebrow">
           <span data-lang="en">Biomedical Engineering · University of Waterloo · Second Year</span>
@@ -562,12 +447,10 @@
           <span data-lang="fr"><strong>En ce moment :</strong> Assistant de recherche, Université de Calgary, Département des neurosciences cliniques et de radiologie</span>
         </div>
       </div>
-
       <img src="Headshot.JPEG" alt="Matthew Murray" class="profile-photo">
     </div>
   </header>
 
-  <!-- ABOUT -->
   <section id="about">
     <p class="section-label">
       <span data-lang="en">About Me</span>
@@ -583,26 +466,18 @@
     </p>
   </section>
 
-  <!-- PHOTOS -->
   <section id="photos">
     <p class="section-label">
       <span data-lang="en">Leadership in Action</span>
       <span data-lang="fr">Leadership en action</span>
     </p>
     <div class="photo-grid">
-      <div class="photo-slot">
-        <img src="Headbudphoto.jpg" alt="Head Buddies">
-      </div>
-      <div class="photo-slot">
-        <img src="Engclubphoto.JPEG" alt="Engineering Club" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="photo-slot">
-        <img src="ShadIDPhoto.JPEG" alt="Shad UPEI" style="width:100%;height:100%;object-fit:cover;">
-      </div>
+      <div class="photo-slot"><img src="Headbudphoto.jpg" alt="Head Buddies"></div>
+      <div class="photo-slot"><img src="Engclubphoto.JPEG" alt="Engineering Club"></div>
+      <div class="photo-slot"><img src="ShadIDPhoto.JPEG" alt="Shad UPEI"></div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <p class="section-label">
       <span data-lang="en">Experience</span>
@@ -610,7 +485,6 @@
     </p>
     <div class="card-grid">
 
-      <!-- RESEARCH ASSISTANT -->
       <div class="card">
         <div class="card-header">
           <h3>
@@ -636,7 +510,6 @@
         </div>
       </div>
 
-      <!-- HEAD BUDDIES -->
       <div class="card">
         <img src="Budleadershipphoto.jpg" alt="Head Buddies" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
         <div class="card-header">
@@ -654,7 +527,6 @@
         </ul>
       </div>
 
-      <!-- ENGINEERING CLUB -->
       <div class="card">
         <img src="Engphotoconference.JPEG" alt="Engineering Club" style="width:100%;height:180px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
         <div class="card-header">
@@ -672,7 +544,6 @@
         </ul>
       </div>
 
-      <!-- AQUATICS -->
       <div class="card">
         <div class="card-header">
           <h3>
@@ -692,7 +563,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <p class="section-label">
       <span data-lang="en">Projects</span>
@@ -772,7 +642,6 @@
     </div>
   </section>
 
-  <!-- ATHLETICS -->
   <section id="athletics">
     <p class="section-label">
       <span data-lang="en">Athletics</span>
@@ -832,7 +701,6 @@
     </div>
   </section>
 
-  <!-- AWARDS -->
   <section id="awards">
     <p class="section-label">
       <span data-lang="en">Awards</span>
@@ -885,7 +753,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <p class="section-label">
       <span data-lang="en">Skills</span>
@@ -993,7 +860,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <p class="section-label">
       <span data-lang="en">Education</span>
@@ -1018,7 +884,6 @@
     </div>
   </section>
 
-    <!-- WHY BIOMEDICAL, at the bottom -->
   <section id="why">
     <p class="section-label">
       <span data-lang="en">Why Biomedical</span>
@@ -1030,11 +895,12 @@
         <br><br><strong>Engineering meeting the body.</strong>
       </span>
       <span data-lang="fr">
-        Deux choses m'attirent vers le génie biomédical. La première est la <strong>conception de dispositifs d'assistance, d'accessibilité et médicaux</strong> : construire des outils qui redonnent des capacités aux personnes, qu'il s'agisse d'un porte-clés imprimé en 3D pour une personne arthritique, de touches braille pour une personne malvoyante, ou des outils diagnostiques de précision utilisés quotidiennement en milieu hospitalier. Je veux concevoir des dispositifs qui atteignent réellement les patients. La deuxième est la <strong>conception ergonomique pour charge soutenue</strong> : comprendre ce que des heures assises, une mauvaise posture et des forces compressives font réellement au bas du dos, et concevoir des systèmes de siège, notamment dans les véhicules, qui en tiennent compte correctement.
-        <br><br><strong>Un génie qui rencontre le corps là où il se trouve réellement.</strong>
+        Deux choses m'attirent vers le génie biomédical. La première est la <strong>conception de dispositifs d'assistance, d'accessibilité et médicaux</strong> : construire des outils qui redonnent des capacités aux personnes, un porte-clés pour quelqu'un avec arthrite, des touches braille pour quelqu'un avec une déficience visuelle, ou un outil diagnostique utilisé à l'hôpital. Des dispositifs qui atteignent vraiment les patients. La deuxième est la <strong>conception ergonomique</strong> : comprendre ce que de longues heures assises et une mauvaise posture font au bas du dos, et concevoir des sièges, notamment dans les véhicules, qui en tiennent compte.
+        <br><br><strong>Un génie au service du corps.</strong>
       </span>
     </p>
-  <!-- CONTACT -->
+  </section>
+
   <section id="contact">
     <p class="section-label">
       <span data-lang="en">Contact</span>
@@ -1053,10 +919,6 @@
     </div>
   </section>
 
-
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <span>
       <span data-lang="en">Built with HTML & CSS · Matthew Murray © 2026</span>
